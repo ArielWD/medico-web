@@ -1,0 +1,197 @@
+---
+import { doctorConfig } from '../data/config.js';
+---
+
+<section class="hero">
+<div class="container hero-grid">
+    <div class="hero-text">
+      <span class="badge">{doctorConfig.subtituloHero}</span>
+      <h1>{doctorConfig.descripcionHero}</h1>
+      <div class="hero-actions">
+        <a href="#agendar" class="btn-primary-lg">Agendar Cita Online</a>
+        <a href={`https://wa.me/${doctorConfig.whatsappNumero}`} target="_blank" class="btn-secondary-lg">
+          Consultar por WhatsApp
+        </a>
+      </div>
+
+      <!-- Puntos de Confianza Rápidos -->
+      <div class="hero-features">
+        <div class="feature-item">
+          <span class="icon">✓</span>
+          <span>Atención previa cita</span>
+        </div>
+        <div class="feature-item">
+          <span class="icon">✓</span>
+          <span>Estudio de ECG incluido</span>
+        </div>
+        <div class="feature-item">
+          <span class="icon">✓</span>
+          <span>Sedes en dos clínicas</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Columna Derecha: Tarjeta / Foto del Médico -->
+    <div class="hero-media">
+      <div class="image-wrapper">
+        <img src={doctorConfig.fotoDoctor} alt={doctorConfig.nombre} class="doctor-img" />
+        <div class="floating-card">
+          <span class="card-number">{doctorConfig.anosExperiencia}</span>
+          <span class="card-text">Años de trayectoria médica</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    background-color: var(--blue);
+    padding: 2rem 0;
+    width: 100%;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .hero-grid {
+    margin: auto;
+    width: 80%;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    align-items: center;
+  }
+
+  .badge {
+    display: inline-block;
+    background-color: #e0f2fe;
+    color: var(--primary);
+    font-size: 0.875rem;
+    font-weight: 600;
+    padding: 0.35rem 0.85rem;
+    border-radius: 9999px;
+    margin-bottom: 1rem;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+  }
+
+  .description {
+    font-size: 1.125rem;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary-lg {
+    background-color: var(--primary);
+    color: white;
+    padding: 0.875rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: background-color 0.2s ease;
+  }
+
+  .btn-primary-lg:hover {
+    background-color: var(--primary-hover);
+  }
+
+  .btn-secondary-lg {
+    background-color: #f1f5f9;
+    color: var(--text-dark);
+    padding: 0.875rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: background-color 0.2s ease;
+  }
+
+  .btn-secondary-lg:hover {
+    background-color: #e2e8f0;
+  }
+
+  .hero-features {
+    display: flex;
+    gap: 1.5rem;
+    border-top: 1px solid var(--border);
+    padding-top: 1.5rem;
+  }
+
+  .feature-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  .feature-item .icon {
+    color: var(--primary);
+    font-weight: 700;
+  }
+
+  /* Imagen y Elementos Flotantes */
+
+  .hero-media{
+    position: relative;
+  }
+  .doctor-img {
+    width: 100%;
+    display: block;
+  }
+
+  .floating-card {
+    position: absolute;
+    bottom: 20px;
+    left: 80px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    padding: 1rem 1.25rem;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  }
+
+  .card-number {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary);
+  }
+
+  .card-text {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    line-height: 1.2;
+    max-width: 100px;
+  }
+
+  /* Adaptación a Móviles */
+  @media (max-width: 900px) {
+    .hero-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    h1 {
+      font-size: 2rem;
+    }
+
+    .doctor-img {
+      height: 380px;
+    }
+  }
+</style>

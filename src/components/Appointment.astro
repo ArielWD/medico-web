@@ -1,0 +1,226 @@
+---
+import { doctorConfig } from "../data/config";
+---
+
+<section id="agendar" class="appointment-section">
+  <div class="container">
+    <div class="appointment-card">
+      <div class="card-header">
+        <span class="sub-title">Reserva tu Turno</span>
+        <h2>Agendar Consulta Médica</h2>
+        <p>Selecciona tus preferencias y confirma tu solicitud de inmediato.</p>
+      </div>
+
+      <form id="appointment-form" class="form-grid">
+        <!-- Paso 1: Sede y Servicio -->
+        <select id="sede" required>
+        <option value="" disabled selected>Selecciona una sede</option>
+        {doctorConfig.sedes.map((s) => (
+            <option value={`${s.nombre} (${s.ciudad})`}>{s.nombre} ({s.ciudad})</option>
+        ))}
+        </select>
+
+        <select id="servicio" required>
+  <option value="" disabled selected>Selecciona un servicio</option>
+  {doctorConfig.servicios.map((s) => (
+    <option value={s.title}>{s.title}</option>
+  ))}
+</select>
+
+        <!-- Paso 2: Fecha y Turno -->
+        <div class="form-group">
+          <label for="fecha">Fecha Estimada</label>
+          <input type="date" id="fecha" required />
+        </div>
+
+        <div class="form-group">
+          <label for="turno">Turno Preferido</label>
+          <select id="turno" required>
+            <option value="Mañana (8:00 AM - 12:00 PM)">Mañana (8:00 AM - 12:00 PM)</option>
+            <option value="Tarde (2:00 PM - 6:00 PM)">Tarde (2:00 PM - 6:00 PM)</option>
+          </select>
+        </div>
+
+        <!-- Paso 3: Datos del Paciente -->
+        <div class="form-group">
+          <label for="nombre">Nombre y Apellido del Paciente</label>
+          <input type="text" id="nombre" placeholder="Ej. Maria Pérez" required />
+        </div>
+
+        <div class="form-group">
+          <label for="cedula">Cédula / Documento de Identidad</label>
+          <input type="text" id="cedula" placeholder="Ej. V-18234567" required />
+        </div>
+
+        <div class="form-group">
+          <label for="telefono">Número de Teléfono / WhatsApp</label>
+          <input type="tel" id="telefono" placeholder="Ej. 0414 1234567" required />
+        </div>
+
+        <!-- Nuevo Campo: Método de Pago Preferred -->
+        <div class="form-group">
+          <label for="pago">Método de Pago Preferido</label>
+          <select id="pago" required>
+  <option value="" disabled selected>¿Cómo deseas cancelar?</option>
+  {doctorConfig.metodosPago.map((m) => (
+    <option value={m}>{m}</option>
+  ))}
+</select>
+        </div>
+
+        <div class="form-group full-width">
+          <button type="submit" class="btn-submit">
+            Confirmar y Solicitar Cita por WhatsApp
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script define:vars={{ numWa: doctorConfig.whatsappNumero }}>
+  const form = document.getElementById('appointment-form');
+
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const sede = document.getElementById('sede').value;
+      const servicio = document.getElementById('servicio').value;
+      const fecha = document.getElementById('fecha').value;
+      const turno = document.getElementById('turno').value;
+      const nombre = document.getElementById('nombre').value;
+      const cedula = document.getElementById('cedula').value;
+      const telefono = document.getElementById('telefono').value;
+      const pago = document.getElementById('pago').value;
+
+      const mensaje = `Hola, quisiera solicitar una cita medica:%0A%0A` +
+        `*Paciente:* ${nombre}%0A` +
+        `*Cedula:* ${cedula}%0A` +
+        `*Telefono:* ${telefono}%0A` +
+        `*Sede:* ${sede}%0A` +
+        `*Servicio:* ${servicio}%0A` +
+        `*Fecha propuesta:* ${fecha}%0A` +
+        `*Turno:* ${turno}%0A` +
+        `*Metodo de Pago:* ${pago}%0A%0A` +
+        `Por favor enviarme los datos bancarios para realizar el pago y confirmar la reserva.`;
+
+      window.open(`https://wa.me/${numWa}?text=${mensaje}`, '_blank');
+    });
+  }
+</script>
+
+<style>
+  .appointment-section {
+    padding: 5rem 0;
+    background-color: var(--blue);
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .appointment-card {
+    background-color: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 3rem 2.5rem;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+  }
+
+  .card-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+
+  .sub-title {
+    color: var(--primary);
+    font-size: 0.875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .card-header h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin: 0.5rem 0;
+  }
+
+  .card-header p {
+    color: var(--text-muted);
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .full-width {
+    grid-column: span 2;
+  }
+
+  label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-dark);
+  }
+
+  input, select {
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 0.9375rem;
+    background-color: var(--white);
+    color: var(--text-dark);
+    transition: border-color 0.2s;
+  }
+
+  input:focus, select:focus {
+    outline: none;
+    border-color: var(--primary);
+  }
+
+  .btn-submit {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    padding: 1rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+
+  .btn-submit:hover {
+    background-color: var(--primary-hover);
+  }
+
+  @media (max-width: 640px) {
+    .form-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .full-width {
+      grid-column: span 1;
+    }
+
+    .appointment-card {
+      padding: 2rem 1.5rem;
+    }
+  }
+</style>

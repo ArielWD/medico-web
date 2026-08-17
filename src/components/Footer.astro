@@ -1,0 +1,55 @@
+---
+import { doctorConfig } from '../data/config.js';
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container footer-content">
+    <div class="footer-info">
+      <span class="doctor-name">{doctorConfig.nombre}</span>
+      <p>{doctorConfig.especialidad + " | " + doctorConfig.localidad} </p>
+    </div>
+    
+    <div class="footer-copy">
+      <p>&copy; {year} {doctorConfig.nombre}. Todos los derechos reservados.</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background-color: #0f172a;
+    color: #94a3b8;
+    padding: 3rem 0;
+    font-size: 0.875rem;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+
+  .doctor-name {
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 1.125rem;
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+
+  @media (max-width: 640px) {
+    .footer-content {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+</style>

@@ -1,0 +1,53 @@
+---
+// src/layouts/BaseLayout.astro
+const { title = "Dr. Alejandro Silva | Cardiología Intervencionista" } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <!-- Carga de la fuente Plus Jakarta Sans (Muy usada en interfaces médicas modernas) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <!-- <slot /> es la ventana donde se renderizará el contenido de cada página -->
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  /* Variables de Color y Reset Básico */
+  :root {
+    --primary: #0284c7;        /* Azul médico accesibilidad AA */
+    --primary-hover: #0369a1;  /* Azul oscuro para hover */
+    --text-dark: #0f172a;      /* Color texto principal */
+    --text-muted: #475569;     /* Color texto secundario */
+    --bg-light: #f8fafc;       /* Fondo neutro claro */
+    --white: #ffffff;
+    --blue: #56c5e0;
+    --border: #e2e8f0;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    color: var(--text-dark);
+    background-color: var(--bg-light);
+    line-height: 1.5;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+</style>
