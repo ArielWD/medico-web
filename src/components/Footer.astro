@@ -9,6 +9,25 @@ const year = new Date().getFullYear();
       <span class="doctor-name">{doctorConfig.nombre}</span>
       <p>{doctorConfig.especialidad + " | " + doctorConfig.localidad} </p>
     </div>
+
+    <!-- Redes Sociales -->
+    <div class="footer-socials">
+      {doctorConfig.redesSociales.instagram && (
+        <a href={doctorConfig.redesSociales.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          Instagram
+        </a>
+      )}
+      {doctorConfig.redesSociales.tiktok && (
+        <a href={doctorConfig.redesSociales.tiktok} target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+          TikTok
+        </a>
+      )}
+      {doctorConfig.redesSociales.linkedin && (
+        <a href={doctorConfig.redesSociales.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+          LinkedIn
+        </a>
+      )}
+    </div>
     
     <div class="footer-copy">
       <p>&copy; {year} {doctorConfig.nombre}. Todos los derechos reservados.</p>
@@ -45,6 +64,19 @@ const year = new Date().getFullYear();
     display: block;
     margin-bottom: 0.25rem;
   }
+  .footer-socials {
+    display: flex;
+    gap: 1.25rem;
+  }
+
+  .footer-socials a {
+    color: #38bdf8;
+    font-weight: 600;
+    transition: color 0.2s;
+  }
+
+  .footer-socials a:hover {
+    color: #ffffff;
 
   @media (max-width: 640px) {
     .footer-content {

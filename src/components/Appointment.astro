@@ -78,8 +78,31 @@ import { doctorConfig } from "../data/config";
   </div>
 </section>
 
-<script define:vars={{ numWa: doctorConfig.whatsappNumero }}>
+<script define:vars={{ 
+  numWa: doctorConfig.whatsappNumero,
+  cierrecitas: doctorConfig.horacierrecitas
+}}>
   const form = document.getElementById('appointment-form');
+// Configurar la fecha mínima permitida según la hora del día
+  const dateInput = document.getElementById('fecha');
+  if (dateInput) {
+    const ahora = new Date();
+    const horaActual = ahora.getHours(); // Hora en formato 24h (0 a 23)
+
+    // Si son las 17:00 (5 PM) o más, sumamos 2 días (pasado mañana).
+    // Si es antes de las 5 PM, sumamos 1 día (mañana).
+    const diasASumar = horaActual >= cierrecitas ? 2 : 1;
+
+    const fechaMinima = new Date();
+    fechaMinima.setDate(ahora.getDate() + diasASumar);
+
+    // Formatear a YYYY-MM-DD local
+    const año = fechaMinima.getFullYear();
+    const mes = String(fechaMinima.getMonth() + 1).padStart(2, '0');
+    const dia = String(fechaMinima.getDate()).padStart(2, '0');
+
+    dateInput.min = `${año}-${mes}-${dia}`;
+  }
 
   if (form) {
     form.addEventListener('submit', (e) => {

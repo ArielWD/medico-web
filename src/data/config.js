@@ -9,6 +9,16 @@ export const doctorConfig = {
     anosExperiencia: "+12",
     whatsappNumero: "584127672176", // Formato internacional sin símbolo +
     localidad : "San Cristobal - Tachira - Venezuela",
+    // Si son las 17:00 (5 PM) o más, sumamos 2 días (pasado mañana).
+    // Si es antes de las 5 PM, sumamos 1 día (mañana).
+    horacierrecitas : 17,
+
+    // Redes Sociales
+    redesSociales: {
+        instagram: "https://instagram.com/dr.alejandrosilva",
+        tiktok: "https://tiktok.com/@dr.alejandrosilva",
+        linkedin: "https://linkedin.com/in/dr-alejandro-silva"
+    },
 
     // Biografía (Sección Sobre Mí)
     bio: "Comprometido con brindar una atención médica caracterizada por la rigurosidad científica, la empatía y la prevención temprana de patologías cardiovasculares.",
