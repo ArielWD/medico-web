@@ -33,13 +33,11 @@ import { doctorConfig } from '../data/config.js';
 
     <!-- Columna Derecha: Tarjeta / Foto del Médico -->
     <div class="hero-media">
-      <div class="image-wrapper">
         <img src={doctorConfig.fotoDoctor} alt={doctorConfig.nombre} class="doctor-img" />
         <div class="floating-card">
           <span class="card-number">{doctorConfig.anosExperiencia}</span>
           <span class="card-text">Años de trayectoria médica</span>
         </div>
-      </div>
     </div>
   </div>
 </section>
@@ -58,6 +56,7 @@ import { doctorConfig } from '../data/config.js';
     display: grid;
     grid-template-columns: 2fr 1fr;
     align-items: center;
+    justify-items: center;
   }
 
   .badge {
@@ -147,14 +146,16 @@ import { doctorConfig } from '../data/config.js';
     position: relative;
   }
   .doctor-img {
-    width: 100%;
+    max-height: 40rem;
+    object-fit: contain;
     display: block;
+    mask-image: linear-gradient(black 90%, transparent 100%);
   }
 
   .floating-card {
     position: absolute;
     bottom: 20px;
-    left: 80px;
+    left: 50px;
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(8px);
     padding: 1rem 1.25rem;
