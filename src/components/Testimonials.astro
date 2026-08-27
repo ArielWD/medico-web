@@ -1,0 +1,139 @@
+---
+import { doctorConfig } from '../data/config.js';
+---
+
+<section id="testimonios" class="testimonials-section">
+  <div class="container">
+    <div class="section-header">
+      <span class="sub-title">Lo Que Dicen Nuestros Pacientes</span>
+      <h2>Opiniones y Experiencias</h2>
+      <p>La confianza de quienes ya han sido atendidos es nuestra mejor carta de presentación.</p>
+    </div>
+
+    <div class="testimonials-grid">
+      {doctorConfig.testimonios.map((t) => (
+        <div class="testimonial-card">
+          <div class="stars" aria-label={`${t.estrellas} de 5 estrellas`}>
+            {Array.from({ length: t.estrellas }).map(() => (
+              <span>★</span>
+            ))}
+          </div>
+          <p class="testimonial-text">"{t.texto}"</p>
+          <div class="testimonial-footer">
+            <div class="avatar" aria-hidden="true">{t.nombre.charAt(0)}</div>
+            <div>
+              <span class="testimonial-name">{t.nombre}</span>
+              <span class="testimonial-service">{t.servicio}</span>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .testimonials-section {
+    padding: 5rem 0;
+    background-color: var(--bg-light);
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .section-header {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 3.5rem auto;
+  }
+
+  .sub-title {
+    color: var(--primary);
+    font-size: 0.875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .section-header h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin: 0.5rem 0;
+  }
+
+  .section-header p {
+    color: var(--text-muted);
+    font-size: 1rem;
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .testimonial-card {
+    background-color: var(--white);
+    padding: 2rem;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .stars {
+    color: #f59e0b;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
+  }
+
+  .testimonial-text {
+    color: var(--text-dark);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+  }
+
+  .testimonial-footer {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    border-top: 1px solid var(--border);
+    padding-top: 1.25rem;
+  }
+
+  .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--primary);
+    color: white;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .testimonial-footer > div:last-child {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .testimonial-name {
+    font-weight: 700;
+    font-size: 0.9375rem;
+    color: var(--text-dark);
+  }
+
+  .testimonial-service {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+  }
+</style>

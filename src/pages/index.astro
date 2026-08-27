@@ -8,6 +8,9 @@ import Locations from '../components/Locations.astro'
 import Appointment from '../components/Appointment.astro'
 import Faq from '../components/Faq.astro'
 import Footer from '../components/Footer.astro'
+import Testimonials from '../components/Testimonials.astro'
+// ⚠️ Solo para la demo — borrar este import al entregar el sitio a un cliente real.
+import DemoBanner from '../components/DemoBanner.astro'
 ---
 
 <BaseLayout title="Dr. Alejandro Silva | Consulta Cardiología">
@@ -16,16 +19,26 @@ import Footer from '../components/Footer.astro'
     <Hero />
 	<Services/>
 	<About />
+	<Testimonials />
 	<Locations />
 	<Appointment />
 	<Faq />
   </main>
   <Footer />
+  <!-- ⚠️ Solo para la demo — borrar esta línea al entregar el sitio a un cliente real. -->
+  <DemoBanner />
 </BaseLayout>
 
 <style>
   .container {
 	width: 100%;
     margin: 0 auto;
+  }
+
+  /* ⚠️ Solo para la demo — este padding compensa la altura del DemoBanner
+     fijo abajo para que no tape el botón de "Agendar". Al borrar el banner,
+     borra también este padding-bottom. */
+  main {
+    padding-bottom: 5rem;
   }
 </style>

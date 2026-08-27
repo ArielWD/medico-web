@@ -9,11 +9,19 @@ import { doctorConfig } from '../data/config.js';
       <span class="specialty">{doctorConfig.especialidad}</span>
     </a>
         <!-- Menú de Navegación -->
-    <nav class="nav-links">
+    <nav class="nav-links" id="navLinks">
       <a href="#servicios">Servicios</a>
       <a href="#sobre-mi">Sobre mí</a>
+      <a href="#testimonios">Testimonios</a>
       <a href="#ubicaciones">Ubicaciones</a>
       <a href="#faq">Preguntas</a>
+      <!-- En mobile, las acciones viven dentro del menú desplegable -->
+      <div class="nav-actions-mobile">
+        <a href={`https://wa.me/${doctorConfig.whatsappNumero}`} target="_blank" class="btn-whatsapp">
+          WhatsApp
+        </a>
+        <a href="#agendar" class="btn-primary">Agendar Cita</a>
+      </div>
     </nav>
 
     <div class="nav-actions">
@@ -22,8 +30,37 @@ import { doctorConfig } from '../data/config.js';
       </a>
       <a href="#agendar" class="btn-primary">Agendar Cita</a>
     </div>
+
+    <!-- Botón hamburguesa, solo visible en mobile -->
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="navLinks">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </div>
 </header>
+
+<script>
+  const btn = document.getElementById('menuToggle');
+  const nav = document.getElementById('navLinks');
+
+  if (btn && nav) {
+    btn.addEventListener('click', () => {
+      const isOpen = nav.classList.toggle('open');
+      btn.classList.toggle('active', isOpen);
+      btn.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    // Cerrar el menú al tocar un link (mejor UX en mobile)
+    nav.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        nav.classList.remove('open');
+        btn.classList.remove('active');
+        btn.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+</script>
 
 <style>
   .navbar {
@@ -110,10 +147,87 @@ import { doctorConfig } from '../data/config.js';
     background-color: var(--primary-hover);
   }
 
-  /* Ocultar menú largo en pantallas muy pequeñas por ahora */
+  .nav-actions-mobile {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .menu-toggle span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: var(--text-dark);
+    border-radius: 2px;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+
+  .menu-toggle.active span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-toggle.active span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  /* Menú desplegable en mobile en lugar de ocultarlo sin reemplazo */
   @media (max-width: 768px) {
     .nav-links {
       display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background-color: var(--white);
+      border-bottom: 1px solid var(--border);
+      flex-direction: column;
+      gap: 0;
+      padding: 0.5rem 1.5rem 1.5rem;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
+    }
+
+    .nav-links.open {
+      display: flex;
+    }
+
+    .nav-links a {
+      padding: 0.85rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-actions-mobile {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    .nav-actions-mobile a {
+      flex: 1;
+      text-align: center;
+      border-bottom: none;
+    }
+
+    .nav-actions {
+      display: none;
+    }
+
+    .menu-toggle {
+      display: flex;
     }
   }
 </style>

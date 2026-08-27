@@ -1,5 +1,13 @@
 // src/data/config.js
 
+// ⚠️ ESTE BLOQUE ES SOLO PARA LA DEMO. Al entregar el sitio a un cliente real,
+// borra este objeto y el componente <DemoBanner /> de index.astro.
+export const demoConfig = {
+    marca: "HWebCraft",
+    whatsappNumero: "584127672176", // Formato internacional sin símbolo +
+    mensajePrellenado: "Hola, vi la demo del sitio para médicos y quiero cotizar una web para mi consultorio."
+};
+
 export const doctorConfig = {
     // Datos Personales y Marca
     nombre: "Dr. Alejandro Silva",
@@ -75,7 +83,9 @@ export const doctorConfig = {
             dias: "Lunes, Miércoles y Viernes",
             horario: "8:00 AM - 12:00 PM",
             telefono: "+58 276 3456789",
-            mapaUrl: "https://maps.google.com"
+            // Con este formato de búsqueda, Maps lleva directo a la dirección
+            // aunque el lugar no tenga una ficha propia en Google.
+            mapaUrl: "https://www.google.com/maps/search/?api=1&query=Av.+19+de+Abril+Torre+B+San+Cristobal+Tachira"
         },
         {
             nombre: "Clínica San José",
@@ -84,7 +94,7 @@ export const doctorConfig = {
             dias: "Martes y Jueves",
             horario: "2:00 PM - 6:00 PM",
             telefono: "+58 276 9876543",
-            mapaUrl: "https://maps.google.com"
+            mapaUrl: "https://www.google.com/maps/search/?api=1&query=Calle+4+con+Carrera+5+Tariba+Tachira"
         }
     ],
 
@@ -94,6 +104,31 @@ export const doctorConfig = {
         "Zelle (USD)",
         "Efectivo en Consultorio",
         "Transferencia Bancaria"
+    ],
+
+    // Testimonios de Pacientes
+    // Nota: son de ejemplo para la demo. En un cliente real, revisar la
+    // normativa local sobre testimonios en publicidad médica antes de usar
+    // testimonios reales o inventados.
+    testimonios: [
+        {
+            nombre: "María P.",
+            servicio: "Consulta Cardiológica",
+            texto: "El Dr. Silva me explicó todo con calma y en palabras que pude entender. Nunca sentí que estaba apurado, y el seguimiento por WhatsApp después de la consulta se agradece muchísimo.",
+            estrellas: 5
+        },
+        {
+            nombre: "Carlos R.",
+            servicio: "Prueba de Esfuerzo",
+            texto: "Muy profesional y puntual. Me dieron los resultados el mismo día y agendar la cita fue rapidísimo, todo por WhatsApp sin tener que llamar ni hacer fila.",
+            estrellas: 5
+        },
+        {
+            nombre: "Yolimar G.",
+            servicio: "Ecocardiograma Doppler",
+            texto: "Llevaba tiempo posponiendo este estudio por miedo, pero el trato fue excelente. La sede de Táriba tiene fácil acceso y el consultorio es muy cómodo.",
+            estrellas: 5
+        }
     ],
 
     // Preguntas Frecuentes

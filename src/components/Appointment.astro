@@ -117,18 +117,22 @@ import { doctorConfig } from "../data/config";
       const telefono = document.getElementById('telefono').value;
       const pago = document.getElementById('pago').value;
 
-      const mensaje = `Hola, quisiera solicitar una cita medica:%0A%0A` +
-        `*Paciente:* ${nombre}%0A` +
-        `*Cedula:* ${cedula}%0A` +
-        `*Telefono:* ${telefono}%0A` +
-        `*Sede:* ${sede}%0A` +
-        `*Servicio:* ${servicio}%0A` +
-        `*Fecha propuesta:* ${fecha}%0A` +
-        `*Turno:* ${turno}%0A` +
-        `*Metodo de Pago:* ${pago}%0A%0A` +
+      // Armamos el mensaje con saltos de línea reales; encodeURIComponent
+      // se encarga de convertirlos (y cualquier tilde, &, #, % del usuario) 
+      // en algo seguro para la URL.
+      const mensaje =
+        `Hola, quisiera solicitar una cita medica:\n\n` +
+        `*Paciente:* ${nombre}\n` +
+        `*Cedula:* ${cedula}\n` +
+        `*Telefono:* ${telefono}\n` +
+        `*Sede:* ${sede}\n` +
+        `*Servicio:* ${servicio}\n` +
+        `*Fecha propuesta:* ${fecha}\n` +
+        `*Turno:* ${turno}\n` +
+        `*Metodo de Pago:* ${pago}\n\n` +
         `Por favor enviarme los datos bancarios para realizar el pago y confirmar la reserva.`;
 
-      window.open(`https://wa.me/${numWa}?text=${mensaje}`, '_blank');
+      window.open(`https://wa.me/${numWa}?text=${encodeURIComponent(mensaje)}`, '_blank');
     });
   }
 </script>
@@ -183,10 +187,17 @@ import { doctorConfig } from "../data/config";
     gap: 1.5rem;
   }
 
+  /* Sin esto, un <select> puede exigir tanto ancho como su opción más larga
+     de texto y forzar que todo el grid (y la página) se desborde en mobile. */
+  .form-grid > * {
+    min-width: 0;
+  }
+
   .form-group {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    min-width: 0;
   }
 
   .full-width {
@@ -200,6 +211,8 @@ import { doctorConfig } from "../data/config";
   }
 
   input, select {
+    width: 100%;
+    max-width: 100%;
     padding: 0.75rem 1rem;
     border: 1px solid var(--border);
     border-radius: 8px;
