@@ -6,7 +6,7 @@ export const demoConfig = {
     marca: "HWebCraft",
     whatsappNumero: "584127672176", // Formato internacional sin símbolo +
     mensajePrellenado: "Hola, vi la demo del sitio para médicos y quiero cotizar una web para mi consultorio.",
-    precioDesde: "U$D100",
+    precioDesde: "$100",
     garantia: "Ajustes gratis durante los primeros 30 días después de la entrega.",
     pasos: [
         {
