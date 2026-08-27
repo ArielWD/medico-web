@@ -63,7 +63,7 @@ export const doctorConfig = {
     // Biografía (Sección Sobre Mí)
     bio: "Comprometido con brindar una atención médica caracterizada por la rigurosidad científica, la empatía y la prevención temprana de patologías cardiovasculares.",
     fotoDoctor: "/foto-doc.webp",
-    fotoSobreMi: "https://images.unsplash.com/photo-1537368910025-700350fe46c7?q=80&w=800&auto=format&fit=crop",
+    fotoSobreMi: "/img-about.webp",
 
     logros: [
         "Especialista en Cardiología Intervencionista (UCV)",
