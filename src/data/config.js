@@ -72,6 +72,15 @@ export const doctorConfig = {
         "Entrenamiento avanzado en Ecocardiografía Doppler"
     ],
 
+    //Hero features
+
+    heroFeatures: [
+        "Atención previa cita",
+        "Estudio de ECG incluido",
+        "Seguimiento personalizado por WhatsApp",
+        "Protocolos de seguridad y bioseguridad"
+    ],
+
     // Servicios
     servicios: [
         {

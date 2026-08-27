@@ -16,18 +16,12 @@ import { doctorConfig } from '../data/config.js';
 
       <!-- Puntos de Confianza Rápidos -->
       <div class="hero-features">
-        <div class="feature-item">
-          <span class="icon">✓</span>
-          <span>Atención previa cita</span>
-        </div>
-        <div class="feature-item">
-          <span class="icon">✓</span>
-          <span>Estudio de ECG incluido</span>
-        </div>
-        <div class="feature-item">
-          <span class="icon">✓</span>
-          <span>Sedes en dos clínicas</span>
-        </div>
+        {doctorConfig.heroFeatures.map((item)=>(
+          <div class="feature-item">
+            <span class="icon">✓</span>
+            <span>{item}</span> 
+          </div>
+          ))}
       </div>
     </div>
 
