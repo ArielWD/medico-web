@@ -1,0 +1,262 @@
+---
+// ⚠️ COMPONENTE SOLO PARA LA DEMO.
+// Al entregar el sitio a un cliente real, elimina este archivo y su
+// referencia en index.astro (no depende de doctorConfig, así que no
+// rompe nada del sitio del cliente).
+import { demoConfig } from '../data/config.js';
+
+const mensaje = encodeURIComponent(demoConfig.mensajePrellenado);
+const whatsappUrl = `https://wa.me/${demoConfig.whatsappNumero}?text=${mensaje}`;
+---
+
+<section id="para-medicos" class="for-doctors-section">
+  <div class="container">
+    <div class="section-header">
+      <span class="sub-title">¿Eres médico y te gustó esta web?</span>
+      <h2>Así de fácil es tener la tuya</h2>
+      <p>Esta página es una demo hecha por <strong>{demoConfig.marca}</strong>. Así se ve el proceso para tener una igual, con tus datos.</p>
+    </div>
+
+    <!-- Cómo funciona -->
+    <div class="steps-grid">
+      {demoConfig.pasos.map((paso, i) => (
+        <div class="step-card">
+          <span class="step-number">{i + 1}</span>
+          <h3>{paso.titulo}</h3>
+          <p>{paso.descripcion}</p>
+        </div>
+      ))}
+    </div>
+
+    <!-- Antes / Después -->
+    <div class="comparison-grid">
+      <div class="comparison-card sin-web">
+        <h3>Sin web</h3>
+        <ul>
+          {demoConfig.sinWeb.map((item) => (
+            <li><span class="icon-x">✕</span> {item}</li>
+          ))}
+        </ul>
+      </div>
+      <div class="comparison-card con-web">
+        <h3>Con esta web</h3>
+        <ul>
+          {demoConfig.conWeb.map((item) => (
+            <li><span class="icon-check">✓</span> {item}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <!-- Precio y CTA -->
+    <div class="pricing-card">
+      <div class="pricing-info">
+        <span class="pricing-label">Desde</span>
+        <span class="pricing-amount">{demoConfig.precioDesde}</span>
+      </div>
+      <p class="pricing-guarantee">{demoConfig.garantia}</p>
+      <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" class="pricing-cta">
+        Quiero mi web
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .for-doctors-section {
+    padding: 5rem 0;
+    background-color: #0f172a;
+    color: #e2e8f0;
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .section-header {
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto 3.5rem auto;
+  }
+
+  .sub-title {
+    color: #38bdf8;
+    font-size: 0.875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .section-header h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0.5rem 0;
+  }
+
+  .section-header p {
+    color: #94a3b8;
+    font-size: 1rem;
+  }
+
+  /* Pasos */
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+  }
+
+  .step-card {
+    background-color: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 1.75rem 1.5rem;
+  }
+
+  .step-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #38bdf8;
+    color: #0f172a;
+    font-weight: 700;
+    font-size: 0.9375rem;
+    margin-bottom: 1rem;
+  }
+
+  .step-card h3 {
+    font-size: 1.0625rem;
+    color: #ffffff;
+    margin: 0 0 0.5rem 0;
+  }
+
+  .step-card p {
+    font-size: 0.875rem;
+    color: #94a3b8;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  /* Antes / Después */
+  .comparison-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+  }
+
+  .comparison-card {
+    border-radius: 12px;
+    padding: 1.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .comparison-card.sin-web {
+    background-color: rgba(248, 113, 113, 0.06);
+  }
+
+  .comparison-card.con-web {
+    background-color: rgba(52, 211, 153, 0.06);
+  }
+
+  .comparison-card h3 {
+    font-size: 1.0625rem;
+    color: #ffffff;
+    margin: 0 0 1rem 0;
+  }
+
+  .comparison-card ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .comparison-card li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    font-size: 0.875rem;
+    color: #cbd5e1;
+    line-height: 1.4;
+  }
+
+  .icon-x {
+    color: #f87171;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .icon-check {
+    color: #34d399;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  /* Precio */
+  .pricing-card {
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 3rem 1.5rem;
+  }
+
+  .pricing-info {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .pricing-label {
+    font-size: 1rem;
+    color: #94a3b8;
+  }
+
+  .pricing-amount {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #ffffff;
+  }
+
+  .pricing-guarantee {
+    color: #94a3b8;
+    font-size: 0.875rem;
+    margin: 0 0 1.75rem 0;
+  }
+
+  .pricing-cta {
+    display: inline-block;
+    background-color: #25d366;
+    color: #ffffff;
+    padding: 0.9rem 2.25rem;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: background-color 0.2s ease;
+  }
+
+  .pricing-cta:hover {
+    background-color: #1ebe5b;
+  }
+
+  @media (max-width: 640px) {
+    .comparison-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .pricing-amount {
+      font-size: 2rem;
+    }
+  }
+</style>
