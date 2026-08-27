@@ -77,8 +77,7 @@ export const doctorConfig = {
     heroFeatures: [
         "Atención previa cita",
         "Estudio de ECG incluido",
-        "Seguimiento personalizado por WhatsApp",
-        "Protocolos de seguridad y bioseguridad"
+        "Seguimiento personalizado por WhatsApp"
     ],
 
     // Servicios
