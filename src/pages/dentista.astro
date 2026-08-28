@@ -1,0 +1,49 @@
+---
+import BaseLayout from '../layout/BaseLayout.astro'
+import Navbar from '../components/NavBar.astro'
+import Hero from '../components/Hero.astro'
+import Services from '../components/Services.astro'
+import About from '../components/About.astro'
+import Locations from '../components/Locations.astro'
+import Appointment from '../components/Appointment.astro'
+import Faq from '../components/Faq.astro'
+import Footer from '../components/Footer.astro'
+import Testimonials from '../components/Testimonials.astro'
+// ⚠️ Solo para la demo — borrar estos imports al entregar el sitio a un cliente real.
+import ForDoctors from '../components/ForDoctors.astro'
+import DemoBanner from '../components/DemoBanner.astro'
+
+import { dentistaConfig } from '../data/clientes/dentista.js'
+---
+
+<BaseLayout title="Dra. Valentina Rojas | Clínica Dental">
+  <Navbar config={dentistaConfig} />
+  <main class="container">
+    <Hero config={dentistaConfig} />
+	<Services config={dentistaConfig} />
+	<About config={dentistaConfig} />
+	<Testimonials config={dentistaConfig} />
+	<Locations config={dentistaConfig} />
+	<Appointment config={dentistaConfig} />
+	<Faq config={dentistaConfig} />
+  </main>
+  <!-- ⚠️ Solo para la demo — borrar esta línea al entregar el sitio a un cliente real. -->
+  <ForDoctors />
+  <Footer config={dentistaConfig} />
+  <!-- ⚠️ Solo para la demo — borrar esta línea al entregar el sitio a un cliente real. -->
+  <DemoBanner />
+</BaseLayout>
+
+<style>
+  .container {
+	width: 100%;
+    margin: 0 auto;
+  }
+
+  /* ⚠️ Solo para la demo — este padding compensa la altura del DemoBanner
+     fijo abajo para que no tape el botón de "Agendar". Al borrar el banner,
+     borra también este padding-bottom. */
+  main {
+    padding-bottom: 5rem;
+  }
+</style>

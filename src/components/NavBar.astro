@@ -1,12 +1,13 @@
 ---
-import { doctorConfig } from '../data/config.js';
+import { doctorConfig as defaultConfig } from "../data/config.js";
+const { config = defaultConfig } = Astro.props;
 ---
 
 <header class="navbar">
   <div class="container navbar-content">
     <a href="#" class="brand">
-      <span class="doctor-name">{doctorConfig.nombre}</span>
-      <span class="specialty">{doctorConfig.especialidad}</span>
+      <span class="doctor-name">{config.nombre}</span>
+      <span class="specialty">{config.especialidad}</span>
     </a>
         <!-- Menú de Navegación -->
     <nav class="nav-links" id="navLinks">
@@ -17,7 +18,7 @@ import { doctorConfig } from '../data/config.js';
       <a href="#faq">Preguntas</a>
       <!-- En mobile, las acciones viven dentro del menú desplegable -->
       <div class="nav-actions-mobile">
-        <a href={`https://wa.me/${doctorConfig.whatsappNumero}`} target="_blank" class="btn-whatsapp">
+        <a href={`https://wa.me/${config.whatsappNumero}`} target="_blank" class="btn-whatsapp">
           WhatsApp
         </a>
         <a href="#agendar" class="btn-primary">Agendar Cita</a>
@@ -25,7 +26,7 @@ import { doctorConfig } from '../data/config.js';
     </nav>
 
     <div class="nav-actions">
-      <a href={`https://wa.me/${doctorConfig.whatsappNumero}`} target="_blank" class="btn-whatsapp">
+      <a href={`https://wa.me/${config.whatsappNumero}`} target="_blank" class="btn-whatsapp">
         WhatsApp
       </a>
       <a href="#agendar" class="btn-primary">Agendar Cita</a>

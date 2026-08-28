@@ -1,36 +1,37 @@
 ---
-import { doctorConfig } from '../data/config.js';
+import { doctorConfig as defaultConfig } from "../data/config.js";
+const { config = defaultConfig } = Astro.props;
 const year = new Date().getFullYear();
 ---
 
 <footer class="site-footer">
   <div class="container footer-content">
     <div class="footer-info">
-      <span class="doctor-name">{doctorConfig.nombre}</span>
-      <p>{doctorConfig.especialidad + " | " + doctorConfig.localidad} </p>
+      <span class="doctor-name">{config.nombre}</span>
+      <p>{config.especialidad + " | " + config.localidad} </p>
     </div>
 
     <!-- Redes Sociales -->
     <div class="footer-socials">
-      {doctorConfig.redesSociales.instagram && (
-        <a href={doctorConfig.redesSociales.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+      {config.redesSociales.instagram && (
+        <a href={config.redesSociales.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram">
           Instagram
         </a>
       )}
-      {doctorConfig.redesSociales.tiktok && (
-        <a href={doctorConfig.redesSociales.tiktok} target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+      {config.redesSociales.tiktok && (
+        <a href={config.redesSociales.tiktok} target="_blank" rel="noopener noreferrer" aria-label="TikTok">
           TikTok
         </a>
       )}
-      {doctorConfig.redesSociales.linkedin && (
-        <a href={doctorConfig.redesSociales.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+      {config.redesSociales.linkedin && (
+        <a href={config.redesSociales.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
           LinkedIn
         </a>
       )}
     </div>
     
     <div class="footer-copy">
-      <p>&copy; {year} {doctorConfig.nombre}. Todos los derechos reservados.</p>
+      <p>&copy; {year} {config.nombre}. Todos los derechos reservados.</p>
     </div>
   </div>
 </footer>

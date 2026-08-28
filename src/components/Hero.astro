@@ -1,35 +1,36 @@
 ---
-import { doctorConfig } from '../data/config.js';
+import { doctorConfig as defaultConfig } from "../data/config.js";
+const { config = defaultConfig } = Astro.props;
 ---
 
 <section class="hero">
 <div class="container hero-grid">
     <div class="hero-text">
-      <span class="badge">{doctorConfig.subtituloHero}</span>
-      <h1>{doctorConfig.descripcionHero}</h1>
+      <span class="badge">{config.subtituloHero}</span>
+      <h1>{config.descripcionHero}</h1>
       <div class="hero-actions">
         <a href="#agendar" class="btn-primary-lg">Agendar Cita Online</a>
-        <a href={`https://wa.me/${doctorConfig.whatsappNumero}`} target="_blank" class="btn-secondary-lg">
+        <a href={`https://wa.me/${config.whatsappNumero}`} target="_blank" class="btn-secondary-lg">
           Consultar por WhatsApp
         </a>
       </div>
 
       <!-- Puntos de Confianza Rápidos -->
       <div class="hero-features">
-        {doctorConfig.heroFeatures.map((item)=>(
+        {config.caracteristicasHero.map((item: string) => (
           <div class="feature-item">
             <span class="icon">✓</span>
-            <span>{item}</span> 
+            <span>{item}</span>
           </div>
-          ))}
+        ))}
       </div>
     </div>
 
     <!-- Columna Derecha: Tarjeta / Foto del Médico -->
     <div class="hero-media">
-        <img src={doctorConfig.fotoDoctor} alt={doctorConfig.nombre} class="doctor-img" />
+        <img src={config.fotoDoctor} alt={config.nombre} class="doctor-img" />
         <div class="floating-card">
-          <span class="card-number">{doctorConfig.anosExperiencia}</span>
+          <span class="card-number">{config.anosExperiencia}</span>
           <span class="card-text">Años de trayectoria médica</span>
         </div>
     </div>

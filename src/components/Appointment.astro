@@ -1,5 +1,6 @@
 ---
-import { doctorConfig } from "../data/config";
+import { doctorConfig as defaultConfig } from "../data/config.js";
+const { config = defaultConfig } = Astro.props;
 ---
 
 <section id="agendar" class="appointment-section">
@@ -15,14 +16,14 @@ import { doctorConfig } from "../data/config";
         <!-- Paso 1: Sede y Servicio -->
         <select id="sede" required>
         <option value="" disabled selected>Selecciona una sede</option>
-        {doctorConfig.sedes.map((s) => (
+        {config.sedes.map((s) => (
             <option value={`${s.nombre} (${s.ciudad})`}>{s.nombre} ({s.ciudad})</option>
         ))}
         </select>
 
         <select id="servicio" required>
   <option value="" disabled selected>Selecciona un servicio</option>
-  {doctorConfig.servicios.map((s) => (
+  {config.servicios.map((s) => (
     <option value={s.title}>{s.title}</option>
   ))}
 </select>
@@ -62,7 +63,7 @@ import { doctorConfig } from "../data/config";
           <label for="pago">Método de Pago Preferido</label>
           <select id="pago" required>
   <option value="" disabled selected>¿Cómo deseas cancelar?</option>
-  {doctorConfig.metodosPago.map((m) => (
+  {config.metodosPago.map((m) => (
     <option value={m}>{m}</option>
   ))}
 </select>
@@ -79,8 +80,8 @@ import { doctorConfig } from "../data/config";
 </section>
 
 <script define:vars={{ 
-  numWa: doctorConfig.whatsappNumero,
-  cierrecitas: doctorConfig.horacierrecitas
+  numWa: config.whatsappNumero,
+  cierrecitas: config.horacierrecitas
 }}>
   const form = document.getElementById('appointment-form');
 // Configurar la fecha mínima permitida según la hora del día

@@ -48,6 +48,16 @@ const whatsappUrl = `https://wa.me/${demoConfig.whatsappNumero}?text=${mensaje}`
       </div>
     </div>
 
+    <!-- Otros ejemplos del mismo producto, para mostrar que es repetible -->
+    <div class="examples-strip">
+      <span class="examples-label">También hice ejemplos para:</span>
+      <div class="examples-links">
+        {demoConfig.otrosEjemplos.map((ej) => (
+          <a href={ej.url} class="example-pill">{ej.nombre}</a>
+        ))}
+      </div>
+    </div>
+
     <!-- Precio y CTA -->
     <div class="pricing-card">
       <div class="pricing-info">
@@ -199,6 +209,44 @@ const whatsappUrl = `https://wa.me/${demoConfig.whatsappNumero}?text=${mensaje}`
     color: #34d399;
     font-weight: 700;
     flex-shrink: 0;
+  }
+
+  /* Otros ejemplos */
+  .examples-strip {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .examples-label {
+    display: block;
+    font-size: 0.8125rem;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.85rem;
+  }
+
+  .examples-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .example-pill {
+    display: inline-block;
+    padding: 0.5rem 1.1rem;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #e2e8f0;
+    font-size: 0.875rem;
+    font-weight: 600;
+    transition: border-color 0.2s ease, color 0.2s ease;
+  }
+
+  .example-pill:hover {
+    border-color: #38bdf8;
+    color: #38bdf8;
   }
 
   /* Precio */

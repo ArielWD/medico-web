@@ -1,24 +1,25 @@
 ---
-import { doctorConfig } from '../data/config.js';
+import { doctorConfig as defaultConfig } from "../data/config.js";
+const { config = defaultConfig } = Astro.props;
 ---
 
 <section id="sobre-mi" class="about-section">
   <div class="container about-grid">
     <div class="about-image">
       <img 
-        src={doctorConfig.fotoSobreMi} 
+        src={config.fotoSobreMi} 
         alt="Doctor en consultorio" 
       />
     </div>
 
     <div class="about-content">
-      <h2>{doctorConfig.nombre}</h2>
+      <h2>{config.nombre}</h2>
         <p class="bio">
-            {doctorConfig.bio}
+            {config.bio}
         </p>
 
       <ul class="achievements-list">
-        {doctorConfig.logros.map((item) => (
+        {config.logros.map((item : string) => (
           <li>
             <span class="check">✓</span>
             <span>{item}</span>
@@ -53,7 +54,6 @@ import { doctorConfig } from '../data/config.js';
     width: 100%;
     height: 420px;
     object-fit: cover;
-    object-position: right;
     border-radius: 16px;
   }
 

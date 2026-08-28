@@ -1,5 +1,6 @@
 ---
-import { doctorConfig } from '../data/config.js';
+import { doctorConfig as defaultConfig } from "../data/config.js";
+const { config = defaultConfig } = Astro.props;
 ---
 
 <section id="faq" class="faq-section">
@@ -11,7 +12,7 @@ import { doctorConfig } from '../data/config.js';
     </div>
 
     <div class="faq-list">
-      {doctorConfig.faqs.map((faq) => (
+      {config.faqs.map((faq) => (
         <details class="faq-item">
           <summary class="faq-question">
             <span>{faq.pregunta}</span>

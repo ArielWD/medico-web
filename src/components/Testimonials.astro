@@ -1,5 +1,6 @@
 ---
-import { doctorConfig } from '../data/config.js';
+import { doctorConfig as defaultConfig } from "../data/config.js";
+const { config = defaultConfig } = Astro.props;
 ---
 
 <section id="testimonios" class="testimonials-section">
@@ -11,7 +12,7 @@ import { doctorConfig } from '../data/config.js';
     </div>
 
     <div class="testimonials-grid">
-      {doctorConfig.testimonios.map((t) => (
+      {config.testimonios.map((t) => (
         <div class="testimonial-card">
           <div class="stars" aria-label={`${t.estrellas} de 5 estrellas`}>
             {Array.from({ length: t.estrellas }).map(() => (

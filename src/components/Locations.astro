@@ -1,6 +1,21 @@
 ---
-import { doctorConfig } from "../data/config";
+import { doctorConfig as defaultConfig } from "../data/config.js";
 
+type Sede = {
+  ciudad: string;
+  nombre: string;
+  direccion: string;
+  dias: string;
+  horario: string;
+  telefono: string;
+  mapaUrl: string;
+};
+
+type DoctorConfig = {
+  sedes: Sede[];
+};
+
+const { config = defaultConfig }: { config?: DoctorConfig } = Astro.props;
 ---
 
 <section id="ubicaciones" class="locations-section">
@@ -12,7 +27,7 @@ import { doctorConfig } from "../data/config";
     </div>
 
     <div class="locations-grid">
-      {doctorConfig.sedes.map((sede) => (
+      {config.sedes.map((sede) => (
         <div class="location-card">
           <div class="card-header">
             <span class="city-badge">{sede.ciudad}</span>
@@ -87,7 +102,7 @@ import { doctorConfig } from "../data/config";
 
   .locations-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
     gap: 2rem;
   }
 
