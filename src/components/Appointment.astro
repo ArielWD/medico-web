@@ -16,15 +16,15 @@ const { config = defaultConfig } = Astro.props;
         <!-- Paso 1: Sede y Servicio -->
         <select id="sede" required>
         <option value="" disabled selected>Selecciona una sede</option>
-        {config.sedes.map((s) => (
+        {config.sedes.map((s: { nombre: string; ciudad: string }) => (
             <option value={`${s.nombre} (${s.ciudad})`}>{s.nombre} ({s.ciudad})</option>
         ))}
         </select>
 
         <select id="servicio" required>
   <option value="" disabled selected>Selecciona un servicio</option>
-  {config.servicios.map((s) => (
-    <option value={s.title}>{s.title}</option>
+  {config.servicios.map((s : string) => (
+    <option value={s}>{s}</option>
   ))}
 </select>
 
@@ -63,7 +63,7 @@ const { config = defaultConfig } = Astro.props;
           <label for="pago">Método de Pago Preferido</label>
           <select id="pago" required>
   <option value="" disabled selected>¿Cómo deseas cancelar?</option>
-  {config.metodosPago.map((m) => (
+  {config.metodosPago.map((m: string) => (
     <option value={m}>{m}</option>
   ))}
 </select>

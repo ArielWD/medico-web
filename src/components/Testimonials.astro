@@ -1,6 +1,7 @@
 ---
 import { doctorConfig as defaultConfig } from "../data/config.js";
 const { config = defaultConfig } = Astro.props;
+type Testimonio = (typeof defaultConfig.testimonios)[number];
 ---
 
 <section id="testimonios" class="testimonials-section">
@@ -12,7 +13,7 @@ const { config = defaultConfig } = Astro.props;
     </div>
 
     <div class="testimonials-grid">
-      {config.testimonios.map((t) => (
+      {config.testimonios.map((t: Testimonio) => (
         <div class="testimonial-card">
           <div class="stars" aria-label={`${t.estrellas} de 5 estrellas`}>
             {Array.from({ length: t.estrellas }).map(() => (

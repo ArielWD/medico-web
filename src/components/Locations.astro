@@ -27,7 +27,7 @@ const { config = defaultConfig }: { config?: DoctorConfig } = Astro.props;
     </div>
 
     <div class="locations-grid">
-      {config.sedes.map((sede) => (
+      {config.sedes.map((sede : Sede) => (
         <div class="location-card">
           <div class="card-header">
             <span class="city-badge">{sede.ciudad}</span>

@@ -14,7 +14,7 @@ const { config = defaultConfig } = Astro.props;
 
     <!-- Grid Dinámico de Tarjetas -->
     <div class="services-grid">
-    {config.servicios.map((servicio) => (
+    {config.servicios.map((servicio: { icon: string; title: string; description: string }) => (
       <div class="service-card">
         <div class="icon-wrapper">{servicio.icon}</div>
         <h3>{servicio.title}</h3>
