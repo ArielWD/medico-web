@@ -8,7 +8,7 @@ const { config = defaultConfig } = Astro.props;
     <div class="appointment-card">
       <div class="card-header">
         <span class="sub-title">Reserva tu Turno</span>
-        <h2>Agendar Consulta Médica</h2>
+        <h2>{config.tituloAgendar || "Agendar Consulta Médica"}</h2>
         <p>Selecciona tus preferencias y confirma tu solicitud de inmediato.</p>
       </div>
 
@@ -16,15 +16,15 @@ const { config = defaultConfig } = Astro.props;
         <!-- Paso 1: Sede y Servicio -->
         <select id="sede" required>
         <option value="" disabled selected>Selecciona una sede</option>
-        {config.sedes.map((s: { nombre: string; ciudad: string }) => (
+        {config.sedes.map((s) => (
             <option value={`${s.nombre} (${s.ciudad})`}>{s.nombre} ({s.ciudad})</option>
         ))}
         </select>
 
         <select id="servicio" required>
   <option value="" disabled selected>Selecciona un servicio</option>
-  {config.servicios.map((s : string) => (
-    <option value={s}>{s}</option>
+  {config.servicios.map((s) => (
+    <option value={s.title}>{s.title}</option>
   ))}
 </select>
 
@@ -44,7 +44,7 @@ const { config = defaultConfig } = Astro.props;
 
         <!-- Paso 3: Datos del Paciente -->
         <div class="form-group">
-          <label for="nombre">Nombre y Apellido del Paciente</label>
+          <label for="nombre">{config.etiquetaFormularioNombre || "Nombre y Apellido del Paciente"}</label>
           <input type="text" id="nombre" placeholder="Ej. Maria Pérez" required />
         </div>
 
@@ -63,7 +63,7 @@ const { config = defaultConfig } = Astro.props;
           <label for="pago">Método de Pago Preferido</label>
           <select id="pago" required>
   <option value="" disabled selected>¿Cómo deseas cancelar?</option>
-  {config.metodosPago.map((m: string) => (
+  {config.metodosPago.map((m) => (
     <option value={m}>{m}</option>
   ))}
 </select>
@@ -81,7 +81,9 @@ const { config = defaultConfig } = Astro.props;
 
 <script define:vars={{ 
   numWa: config.whatsappNumero,
-  cierrecitas: config.horacierrecitas
+  cierrecitas: config.horacierrecitas,
+  tipoCitaMensaje: config.tipoCitaMensaje || "una cita medica",
+  etiquetaMensajeCliente: config.etiquetaMensajeCliente || "Paciente"
 }}>
   const form = document.getElementById('appointment-form');
 // Configurar la fecha mínima permitida según la hora del día
@@ -122,8 +124,8 @@ const { config = defaultConfig } = Astro.props;
       // se encarga de convertirlos (y cualquier tilde, &, #, % del usuario) 
       // en algo seguro para la URL.
       const mensaje =
-        `Hola, quisiera solicitar una cita medica:\n\n` +
-        `*Paciente:* ${nombre}\n` +
+        `Hola, quisiera solicitar ${tipoCitaMensaje}:\n\n` +
+        `*${etiquetaMensajeCliente}:* ${nombre}\n` +
         `*Cedula:* ${cedula}\n` +
         `*Telefono:* ${telefono}\n` +
         `*Sede:* ${sede}\n` +

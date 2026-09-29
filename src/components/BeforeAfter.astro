@@ -1,0 +1,235 @@
+---
+import { doctorConfig as defaultConfig } from "../data/config.js";
+const { config = defaultConfig } = Astro.props;
+
+// Si el cliente no tiene fotos de antes/después, el componente no renderiza nada.
+const ad = config.antesDespues;
+---
+
+{ad && ad.casos && ad.casos.length > 0 && (
+  <section id="antes-despues" class="before-after-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="sub-title">{ad.subtitulo || "Resultados Reales"}</span>
+        <h2>{ad.titulo || "Antes y Después"}</h2>
+        <p>{ad.descripcion}</p>
+      </div>
+
+      <div class="cases-grid">
+        {ad.casos.map((caso) => (
+          <div class="case-card">
+            <div class="slider-wrapper" data-slider>
+              <img src={caso.fotoDespues} alt={`Después - ${caso.tratamiento}`} class="img-layer img-after" />
+              <img
+                src={caso.fotoAntes}
+                alt={`Antes - ${caso.tratamiento}`}
+                class="img-layer img-before"
+                style="clip-path: inset(0 50% 0 0);"
+              />
+              <span class="label label-before">Antes</span>
+              <span class="label label-after">Después</span>
+              <div class="slider-handle" style="left: 50%;">
+                <span class="handle-arrows">⟷</span>
+              </div>
+              <input
+                type="range"
+                min="0"
+                max="100"
+                value="50"
+                class="slider-input"
+                aria-label={`Comparar antes y después de ${caso.tratamiento}`}
+              />
+            </div>
+            <div class="case-info">
+              <h3>{caso.tratamiento}</h3>
+              {caso.nota && <p>{caso.nota}</p>}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <p class="disclaimer">
+        Fotos con consentimiento del paciente. Los resultados pueden variar según cada persona.
+      </p>
+    </div>
+  </section>
+)}
+
+<script>
+  // Slider de comparación: mover el input recorta la imagen "antes" con
+  // clip-path y desplaza la línea divisoria — ambas imágenes mantienen
+  // siempre su tamaño real, así que nunca se deforman.
+  document.querySelectorAll('[data-slider]').forEach((wrapper) => {
+    const input = wrapper.querySelector('.slider-input');
+    const before = wrapper.querySelector('.img-before');
+    const handle = wrapper.querySelector('.slider-handle');
+
+    if (!input || !before || !handle) return;
+
+    const update = (value) => {
+      before.style.clipPath = `inset(0 ${100 - value}% 0 0)`;
+      handle.style.left = `${value}%`;
+    };
+
+    input.addEventListener('input', (e) => update(e.target.value));
+  });
+</script>
+
+<style>
+  .before-after-section {
+    padding: 5rem 0;
+    background-color: var(--white);
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .section-header {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 3.5rem auto;
+  }
+
+  .sub-title {
+    color: var(--primary);
+    font-size: 0.875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .section-header h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin: 0.5rem 0;
+  }
+
+  .section-header p {
+    color: var(--text-muted);
+    font-size: 1rem;
+  }
+
+  .cases-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .case-card {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .slider-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    border-radius: 12px;
+    overflow: hidden;
+    user-select: none;
+    background-color: var(--bg-light);
+  }
+
+  .img-layer {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    pointer-events: none;
+  }
+
+  .label {
+    position: absolute;
+    top: 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: white;
+    background-color: rgba(15, 23, 42, 0.6);
+    padding: 0.3rem 0.65rem;
+    border-radius: 999px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .label-before {
+    left: 0.75rem;
+  }
+
+  .label-after {
+    right: 0.75rem;
+  }
+
+  .slider-handle {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background-color: var(--white);
+    transform: translateX(-50%);
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+  }
+
+  .handle-arrows {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    background-color: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    font-size: 0.9rem;
+    color: var(--text-dark);
+  }
+
+  .slider-input {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    opacity: 0;
+    cursor: ew-resize;
+    -webkit-appearance: none;
+    appearance: none;
+    z-index: 3;
+  }
+
+  .case-info {
+    text-align: center;
+    margin-top: 1rem;
+  }
+
+  .case-info h3 {
+    font-size: 1rem;
+    color: var(--text-dark);
+    margin: 0 0 0.25rem 0;
+  }
+
+  .case-info p {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    margin: 0;
+  }
+
+  .disclaimer {
+    text-align: center;
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+</style>

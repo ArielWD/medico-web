@@ -15,7 +15,9 @@ export const demoConfig = {
     otrosEjemplos: [
         { nombre: "Cardiólogo", url: "/" },
         { nombre: "Dentista", url: "/dentista" },
-        { nombre: "Nutricionista", url: "/nutricionista" }
+        { nombre: "Nutricionista", url: "/nutricionista" },
+        { nombre: "Contador", url: "/contador" },
+        { nombre: "Dermatología", url: "/dermatologia" }
     ],
     pasos: [
         {

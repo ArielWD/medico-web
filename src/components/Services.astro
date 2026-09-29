@@ -7,14 +7,14 @@ const { config = defaultConfig } = Astro.props;
   <div class="container">
     <!-- Encabezado de la Sección -->
     <div class="section-header">
-      <span class="sub-title">Atención Integral</span>
-      <h2>Servicios y Especialidades Médicas</h2>
-      <p>Diagnósticos precisos y tratamientos personalizados para cuidar de tu corazón.</p>
+      <span class="sub-title">{config.subtituloServicios || "Atención Integral"}</span>
+      <h2>{config.tituloServicios || "Servicios y Especialidades Médicas"}</h2>
+      <p>{config.descripcionServicios || "Diagnósticos precisos y tratamientos personalizados para cuidar de tu corazón."}</p>
     </div>
 
     <!-- Grid Dinámico de Tarjetas -->
     <div class="services-grid">
-    {config.servicios.map((servicio: { icon: string; title: string; description: string }) => (
+    {config.servicios.map((servicio) => (
       <div class="service-card">
         <div class="icon-wrapper">{servicio.icon}</div>
         <h3>{servicio.title}</h3>

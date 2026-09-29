@@ -17,7 +17,7 @@ const { config = defaultConfig } = Astro.props;
 
       <!-- Puntos de Confianza Rápidos -->
       <div class="hero-features">
-        {config.caracteristicasHero.map((item: string) => (
+        {config.caracteristicasHero.map((item) => (
           <div class="feature-item">
             <span class="icon">✓</span>
             <span>{item}</span>
@@ -31,7 +31,7 @@ const { config = defaultConfig } = Astro.props;
         <img src={config.fotoDoctor} alt={config.nombre} class="doctor-img" />
         <div class="floating-card">
           <span class="card-number">{config.anosExperiencia}</span>
-          <span class="card-text">Años de trayectoria médica</span>
+          <span class="card-text">{config.trayectoriaLabel || "Años de trayectoria médica"}</span>
         </div>
     </div>
   </div>

@@ -1,19 +1,18 @@
 ---
 import { doctorConfig as defaultConfig } from "../data/config.js";
 const { config = defaultConfig } = Astro.props;
-type Testimonio = (typeof defaultConfig.testimonios)[number];
 ---
 
 <section id="testimonios" class="testimonials-section">
   <div class="container">
     <div class="section-header">
-      <span class="sub-title">Lo Que Dicen Nuestros Pacientes</span>
+      <span class="sub-title">{config.tituloTestimonios || "Lo Que Dicen Nuestros Pacientes"}</span>
       <h2>Opiniones y Experiencias</h2>
       <p>La confianza de quienes ya han sido atendidos es nuestra mejor carta de presentación.</p>
     </div>
 
     <div class="testimonials-grid">
-      {config.testimonios.map((t: Testimonio) => (
+      {config.testimonios.map((t) => (
         <div class="testimonial-card">
           <div class="stars" aria-label={`${t.estrellas} de 5 estrellas`}>
             {Array.from({ length: t.estrellas }).map(() => (

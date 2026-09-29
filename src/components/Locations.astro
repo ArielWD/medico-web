@@ -1,33 +1,19 @@
 ---
 import { doctorConfig as defaultConfig } from "../data/config.js";
+const { config = defaultConfig } = Astro.props;
 
-type Sede = {
-  ciudad: string;
-  nombre: string;
-  direccion: string;
-  dias: string;
-  horario: string;
-  telefono: string;
-  mapaUrl: string;
-};
-
-type DoctorConfig = {
-  sedes: Sede[];
-};
-
-const { config = defaultConfig }: { config?: DoctorConfig } = Astro.props;
 ---
 
 <section id="ubicaciones" class="locations-section">
   <div class="container">
     <div class="section-header">
-      <span class="sub-title">Sedes de Consulta</span>
+      <span class="sub-title">{config.subtituloSedes || "Sedes de Consulta"}</span>
       <h2>¿Dónde Puedes Encontrarnos?</h2>
-      <p>Atención presencial en múltiples centros de salud con fácil acceso y estacionamiento.</p>
+      <p>{config.descripcionSedes || "Atención presencial en múltiples centros de salud con fácil acceso y estacionamiento."}</p>
     </div>
 
     <div class="locations-grid">
-      {config.sedes.map((sede : Sede) => (
+      {config.sedes.map((sede) => (
         <div class="location-card">
           <div class="card-header">
             <span class="city-badge">{sede.ciudad}</span>
