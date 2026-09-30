@@ -17,7 +17,7 @@ const { config = defaultConfig } = Astro.props;
 
       <!-- Puntos de Confianza Rápidos -->
       <div class="hero-features">
-        {config.caracteristicasHero.map((item) => (
+        {config.caracteristicasHero.map((item: string) => (
           <div class="feature-item">
             <span class="icon">✓</span>
             <span>{item}</span>
@@ -116,6 +116,7 @@ const { config = defaultConfig } = Astro.props;
 
   .hero-features {
     display: flex;
+    flex-direction: column;
     gap: 1.5rem;
     border-top: 1px solid var(--border);
     padding-top: 1.5rem;

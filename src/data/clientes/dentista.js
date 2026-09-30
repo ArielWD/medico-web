@@ -14,7 +14,7 @@ export const dentistaConfig = {
     caracteristicasHero: [
         "Bioseguridad certificada",
         "Financiamiento en cuotas",
-        "Urgencias el mismo día"
+        "Urgencias al día"
     ],
 
     redesSociales: {
