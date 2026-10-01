@@ -35,7 +35,7 @@ export const contadorConfig = {
     },
 
     bio: "Enfocado en simplificarle la parte fiscal y contable a independientes y pequeños negocios, con reportes claros y sin tecnicismos innecesarios, para que siempre sepas en qué está tu situación.",
-    fotoDoctor: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=800&auto=format&fit=crop",
+    fotoDoctor: "https://images.unsplash.com/photo-1627161683077-e34782c24d81?q=80&w=403&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     fotoSobreMi: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=800&auto=format&fit=crop",
 
     logros: [
