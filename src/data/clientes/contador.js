@@ -2,7 +2,7 @@
 
 export const contadorConfig = {
     // Datos Personales y Marca
-    nombre: "Lic. Ricardo Peña",
+    nombre: "Lcda. Laura Gonzalez",
     especialidad: "Contaduría Pública y Asesoría Fiscal",
     subtituloHero: "Asesoría Contable y Fiscal Confiable",
     descripcionHero: "Declaraciones, nómina, contabilidad general y asesoría fiscal para independientes y pequeñas empresas.",
@@ -29,9 +29,9 @@ export const contadorConfig = {
     etiquetaMensajeCliente: "Cliente",
 
     redesSociales: {
-        instagram: "https://instagram.com/lic.ricardopena",
+        instagram: "https://instagram.com/lcda.lauragonzalez",
         tiktok: "",
-        linkedin: "https://linkedin.com/in/lic-ricardo-pena"
+        linkedin: "https://linkedin.com/in/lcda-laura-gonzalez"
     },
 
     bio: "Enfocado en simplificarle la parte fiscal y contable a independientes y pequeños negocios, con reportes claros y sin tecnicismos innecesarios, para que siempre sepas en qué está tu situación.",
@@ -39,8 +39,8 @@ export const contadorConfig = {
     fotoSobreMi: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=800&auto=format&fit=crop",
 
     logros: [
-        "Licenciado en Contaduría Pública (Universidad de Los Andes)",
-        "Colegiado en el Colegio de Contadores Públicos del Táchira",
+        "Licenciada en Contaduría Pública (Universida Catolica del Táchira)",
+        "Colegiada en el Colegio de Contadores Públicos del Táchira",
         "+10 años de experiencia con independientes y pequeñas empresas",
         "Especialización en planificación fiscal"
     ],
